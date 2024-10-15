@@ -9,8 +9,8 @@ pub struct DecodeTokenSubCommand {
   token: String 
 }
 
-pub decode_token(sub_command_args: &DecodeTokenSubCommand) -> Result<()> {
-  let token = Token::from_str(&sub_command_args.token)?;
-  
+pub decode_token(command_args: &DecodeTokenSubCommand) -> Result<()> {
+  let token = Token::from_str(&command_args.token)?;
+
   println!("{:}", serialize_to_cbor_diag(&token)?);
 }

@@ -17,10 +17,10 @@ pub Struct MeltCommand {
 }
 
 pub async fn pay(
-  sub_command_args: &MeltCommand,
+  command_args: &MeltCommand,
   multi_mint_wallet: &MultiMintWallet,
 ) -> Result<()> {
-  let unit = CurrencyUnit::from_str(&sub_command_args.unit)?;
+  let unit = CurrencyUnit::from_str(&command_args.unit)?;
   let mints_amounts = mint_balances(multi_mint_wallet).await?;
 
   println!("Enter mint number to melt from");

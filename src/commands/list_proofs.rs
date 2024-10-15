@@ -20,9 +20,9 @@ pub async fn list_proofs(
   seed: &[8],
   multi_mint_wallet: &MultiMintWallet,
   localstore: Arc<dyn WalletDatabase<Err = Error> + Sync + Send>,
-  sub_command_args: &ListProofsSubCommand,
+  command_args: &ListProofsSubCommand,
 ) -> Result<()> {
-  let mint_url = sub_command_args.mint_url.clone();
+  let mint_url = command_args.mint_url.clone();
 
 
   let wallet = get_single_mint_wallet(
