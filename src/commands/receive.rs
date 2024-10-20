@@ -30,7 +30,7 @@ pub async fn recieve (
         } else {
           SecretKey::from_str(s)
         }
-      }).collect::<Result<Vec<SecretKey>, _>>()?
+      }).collect::<Result<Vec<SecretKey>, _>>()?;
       signing_key.append(&mut s_keys);
   }
 

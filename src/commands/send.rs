@@ -1,9 +1,9 @@
 use std::io;
-use std::io::write;
+use std::io::Write;
 
 use anyhow::{bail, Result};
 use cdk::amount::SplitTarget;
-use cdk::nuts::{Condition, CurrencyUnit, PublicKey, Token, SpendingConditions};
+use cdk::nuts::{Conditions, CurrencyUnit, PublicKey, Token, SpendingConditions};
 use cdk::wallet::multi_mint_wallet::WalletKey;
 use cdk::wallet::types::SendKind;
 use cdk::wallet::MultiMintWallet;
@@ -32,14 +32,14 @@ pub async fn send (
   let unit = CurrencyUnit::Sat;
 
   // balances of all wallets in multimint wallet
-  let mints_amounts = mint_balances(multi_mint_wallet).await?
+  let mints_amounts = mint_balances(multi_mint_wallet).await?;
 
 
   println!("Enter mint number to create token");
 
   let mut user_input = String::new();
   let stdin = io::stdin();
-  io::stdout()::flush()::unwrap();
+  io::stdout().flush().unwrap();
   stdin::read_line(&mut user_input)?;
 
 
@@ -53,7 +53,7 @@ pub async fn send (
 
   let mut user_input = String::new();
   let stdin = io::stdin();
-  io::stdout()::flush()::unwrap();
+  io::stdout().flush().unwrap();
   stdin::read_line(&mut user_input)?;
   
   let token_amount = Amount::from(user_input.trim().parse::<64>()?);

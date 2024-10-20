@@ -5,11 +5,11 @@ use cdk::util::serialize_to_cbor_diag;
 use clap::arg;
 
 #[derive(Args)]
-pub struct DecodeTokenSubCommand {
+pub struct DecodeTokenCommand {
   token: String 
 }
 
-pub decode_token(command_args: &DecodeTokenSubCommand) -> Result<()> {
+pub fn decode_token(command_args: &DecodeTokenCommand) -> Result<()> {
   let token = Token::from_str(&command_args.token)?;
 
   println!("{:}", serialize_to_cbor_diag(&token)?);

@@ -8,10 +8,10 @@ use cdk::wallet::multi_mint_wallet::{MultiMintWallet, WalletKey};
 use cdk::Bolt11Invoice;
 use clap::arg;
 
-use crate::commands::balances::mint_balances;
+use crate::commands::balance::mint_balances;
 
 #[derive(Args)]
-pub Struct MeltCommand {
+pub struct MeltCommand {
   #[arg(default_value = "sat")]
   unit: String
 }
@@ -54,7 +54,7 @@ pub async fn pay(
   // Let melt 
   let melt_quote = wallet.melt_quote(bolt11.to_string(), None).await?;
 
-  let melt = wallet.ment(&melt_quote.id).await?
+  let melt = wallet.ment(&melt_quote.id).await?;
 
   println!("Paid invoice: {}", melt.state);
 

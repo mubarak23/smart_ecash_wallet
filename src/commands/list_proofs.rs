@@ -1,4 +1,4 @@
-std::str::FromStr;
+use std::str::FromStr;
 use anyhow::Result;
 use cdk::cdk_database::{WalletDatabase, Error};
 use cdk::nuts::{CurrencyUnit, MintQuoteState};
@@ -11,16 +11,16 @@ use crate::get_single_mint_wallet;
 
 
 #[derive(Args, Serialize, Deserialize)]
-pub struct ListProofsSubCommand {
+pub struct ListProofsCommand {
   mint_url: MintUrl
 }
 
 
 pub async fn list_proofs(
-  seed: &[8],
+  seed: &[u8],
   multi_mint_wallet: &MultiMintWallet,
   localstore: Arc<dyn WalletDatabase<Err = Error> + Sync + Send>,
-  command_args: &ListProofsSubCommand,
+  command_args: &ListProofsCommand,
 ) -> Result<()> {
   let mint_url = command_args.mint_url.clone();
 
