@@ -11,7 +11,7 @@ use cdk::Amount;
 use clap::Args;
 
 
-use crate::command::balance::mint_balances;
+use crate::commands::balance::mint_balances;
 
 
 

@@ -6,8 +6,7 @@ use anyhow::{bail, Result};
 use cdk::nuts::CurrencyUnit;
 use cdk::wallet::multi_mint_wallet::{MultiMintWallet, WalletKey};
 use cdk::Bolt11Invoice;
-use clap::arg;
-
+use clap::Args;
 use crate::commands::balance::mint_balances;
 
 #[derive(Args)]
@@ -31,9 +30,13 @@ pub async fn pay(
 
   let mint_number: usize = user_input.trim().parse()?;
   
-  if mint_number.gt(&(mint_number.len() - 1)) {
-    bail!("Invalid mint number");
-  }
+  if bolt11
+        .amount_milli_satoshis()
+        .unwrap()
+        .gt(&(<cdk::Amount as Into<u64>>::into(mints_amounts[mint_number].1) * 1000_u64))
+    {
+        bail!("Not enough funds");
+    }
 
   let wallet = mints_amounts[mint_number].0.clone();
 

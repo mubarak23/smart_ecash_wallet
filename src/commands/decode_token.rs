@@ -2,7 +2,7 @@ use std::str::FromStr;
 use cdk::nuts::Token;
 use anyhow::Result;
 use cdk::util::serialize_to_cbor_diag;
-use clap::arg;
+use clap::Args;
 
 #[derive(Args)]
 pub struct DecodeTokenCommand {

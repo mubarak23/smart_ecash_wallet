@@ -5,7 +5,9 @@ use cdk::nuts::{CurrencyUnit, MintQuoteState};
 use cdk::mint_url::MintUrl;
 use cdk::wallet::MultiMintWallet;
 use serde::{ Deserialize, Serialize};
-use clap::arg;
+use clap::Args;
+// use crate::Arc;
+use std::sync::Arc;
 
 use crate::get_single_mint_wallet;
 
@@ -30,10 +32,10 @@ pub async fn list_proofs(
     seed,
     localstore,
     mint_url.clone(),
-    CurrencyUnit::Sats
+    CurrencyUnit::Sat
   ).await?;
 
-  let proofs = wallet.get_proofs.await?;
+  let proofs = wallet.get_proofs().await?;
 
   for proof in proofs {
     println!("Amount: {}, Secret: {}", proof.amount, proof.secret);

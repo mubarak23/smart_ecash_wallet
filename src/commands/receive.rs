@@ -7,21 +7,21 @@ use clap::Args;
 
 
 #[derive(Args)]
-pub struct RecieveCommand {
+pub struct ReceiveCommand {
   token: String,
   #[arg(short, long, action = clap::ArgAction::Append)]
   signing_key: Vec<String>
 }
 
 
-pub async fn recieve (
+pub async fn receive (
   multi_mint_wallet: &MultiMintWallet,
-  command_args: &RecieveCommand
+  command_args: &ReceiveCommand
 ) -> Result<()> {
   let signing_key = Vec::new();
 
-  if !sub_command_args.signing_key.is_empty() {
-    let mut s_keys: Vec<SecretKey> = sub_command_args
+  if !command_args.signing_key.is_empty() {
+    let mut s_keys: Vec<SecretKey> = command_args
       .signing_key.iter().map(|s| {
         if s.start_with("nsec") {
           let nostr_key = nostr_sdk::SecretKey::from_str(s).expect("Invalid secret key");
